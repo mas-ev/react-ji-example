@@ -4,10 +4,15 @@
     margin: 25px;
     margin-top: 50px;
 }
-
-.emoji {
+.indicator-emoji {
     height: 25px;
     width: 25px;
+}
+
+.emoji-menu {
+    height: 25px;
+    width: 25px;
+    visibility:hidden;
 }
 
 .btn-container {

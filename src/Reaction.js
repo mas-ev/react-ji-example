@@ -21,9 +21,24 @@ import menu from './imgs/Reaction_Icons_Menu.svg';
 class ReactionMenu extends React.Component {
     render() {
         return (
-            <img className="emoji" src={this.props.value} />
+            <img className="emoji-menu" src={this.props.value} />
         )
     }
+}
+
+function ReactionIndicator(props) {
+    const icons = props.value;
+    let emojiIcons = [];
+    [...icons].forEach(emojiSvg => {
+        emojiIcons.push(<img className="indicator-emoji" src={emojiSvg} ></img>);
+    });
+
+    return (
+        <div className="reaction-indicator-container">
+            {emojiIcons}
+            <text class=""> You and 2,335</text>
+        </div>
+    )
 }
 
 class ReactionButton extends React.Component {
@@ -38,13 +53,14 @@ class ReactionButton extends React.Component {
         emojis.set("Haha", Haha)
         this.state = { emojis, selected: "Star", };
     }
+
     render() {
         var select = this.state.selected
+        let topEmojis = [this.state.emojis.get("Star").svgIcon, this.state.emojis.get("Up").svgIcon, this.state.emojis.get("Down").svgIcon]
         return (
             <div className="reaction-container">
-                {/* TODO: top3 reaction-indicator "You and 2,335"*/}
                 <ReactionMenu value={this.state.emojis.get("Star").svgIcon} />
-                {/* reaction-menu */}
+                <ReactionIndicator value={topEmojis} />
                 <div class="btn-container">
                     <img src={button} class="reaction-btn"></img>
                     <img src={this.state.emojis.get(select).svgIcon} class="emoji-btn"></img>
